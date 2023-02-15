@@ -1,2 +1,2 @@
 # square-parts
-homework 2
+[a second homework assignment](https://github.com/timotr/harjutused/blob/main/hajusrakendused/spareparts.md)
