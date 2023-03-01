@@ -26,15 +26,24 @@ app.get("/", (req, res) => {
   res.send("/parts");
 });
 
-// todo: pagination (30 parts per one page)
+// ? endpoint returns a paginated list of parts
 app.get("/parts", (req, res) => {
-  res.json(parts);
+  const page = parseInt(req.query.page) || 1;
+  const limit = 30;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const results = {};
+
+  results.results = parts.slice(startIndex, endIndex);
+  res.json(results);
 });
 
+// ? endpoint returns a single part by serial number
 app.get("/parts/:serial", (req, res) => {
   res.json(parts.find((e) => e["serial"] === req.params.serial));
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
