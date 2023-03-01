@@ -1,5 +1,5 @@
 # square-parts
-[a second homework assignment](https://github.com/timotr/harjutused/blob/main/hajusrakendused/spareparts.md)
+Solution for the [Exercise 2 - HTTP API for car parts](https://github.com/timotr/harjutused/blob/main/hajusrakendused/spareparts.md) written in Javascript using Express
 
 ## Usage
 
