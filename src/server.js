@@ -37,15 +37,37 @@ app.get("/square-parts", (req, res) => {
   const { serial, name } = req.query;
 
   if (serial) {
-    res.json(parts.find((e) => e["serial"] === serial));
+    const part = parts.find((e) => e["serial"] === serial);
+    res.json(part);
+
+    if (!part) {
+      return res.status(404).send("Part not found.");
+    }
   } else if (name) {
-    res.json(parts.find((e) => e["name"] === name));
-  } else if (serial && name) {
-    res.json(parts.find((e) => e["serial"] === serial && e["name"] === name));
+    const part = parts.find((e) => e["name"] === name);
+    res.json(part);
+
+    if (!part) {
+      return res.status(404).send("Part not found.");
+    }
   } else {
     results.results = parts.slice(startIndex, endIndex);
     res.json(results);
   }
+});
+
+app.get("/square-parts/search/:serialOrName", (req, res) => {
+  const { serialOrName } = req.params;
+
+  const part = parts.find(
+    (e) => e["serial"] === serialOrName || e["name"] === serialOrName
+  );
+
+  if (!part) {
+    return res.status(404).send("Part not found.");
+  }
+
+  res.json(part);
 });
 
 app.listen(port, () => {
