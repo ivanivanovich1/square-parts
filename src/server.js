@@ -18,7 +18,7 @@ const options = {
 const parts = csvjson.toObject(data, options);
 
 const app = express();
-const port = 3006;
+const port = 3000;
 
 app.set("json spaces", 40);
 
