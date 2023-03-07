@@ -18,7 +18,7 @@ const options = {
 const parts = csvjson.toObject(data, options);
 
 const app = express();
-const port = 3005;
+const port = 3006;
 
 app.set("json spaces", 40);
 
@@ -44,12 +44,12 @@ app.get("/square-parts", (req, res) => {
       return res.status(404).send("Part not found.");
     }
   } else if (name) {
-    const part = parts.find((e) => e["name"] === name);
-    res.json(part);
-
-    if (!part) {
+    const filteredParts = parts.filter((e) => e["name"].includes(name));
+    if (filteredParts.length === 0) {
       return res.status(404).send("Part not found.");
     }
+    results.results = filteredParts.slice(startIndex, endIndex);
+    res.json(results);
   } else {
     results.results = parts.slice(startIndex, endIndex);
     res.json(results);
@@ -59,15 +59,15 @@ app.get("/square-parts", (req, res) => {
 app.get("/square-parts/search/:serialOrName", (req, res) => {
   const { serialOrName } = req.params;
 
-  const part = parts.find(
+  const matchingParts = parts.filter(
     (e) => e["serial"] === serialOrName || e["name"] === serialOrName
   );
 
-  if (!part) {
+  if (matchingParts.length === 0) {
     return res.status(404).send("Part not found.");
   }
 
-  res.json(part);
+  res.json(matchingParts);
 });
 
 app.listen(port, () => {
