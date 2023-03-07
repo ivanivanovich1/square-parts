@@ -18,16 +18,15 @@ const options = {
 const parts = csvjson.toObject(data, options);
 
 const app = express();
-const port = 3000;
+const port = 3005;
 
 app.set("json spaces", 40);
 
 app.get("/", (req, res) => {
-  res.send("/parts");
+  res.send("/square-parts");
 });
 
-// ? endpoint returns a paginated list of parts
-app.get("/parts", (req, res) => {
+app.get("/square-parts", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = 30;
   const startIndex = (page - 1) * limit;
@@ -35,13 +34,18 @@ app.get("/parts", (req, res) => {
 
   const results = {};
 
-  results.results = parts.slice(startIndex, endIndex);
-  res.json(results);
-});
+  const { serial, name } = req.query;
 
-// ? endpoint returns a single part by serial number
-app.get("/parts/:serial", (req, res) => {
-  res.json(parts.find((e) => e["serial"] === req.params.serial));
+  if (serial) {
+    res.json(parts.find((e) => e["serial"] === serial));
+  } else if (name) {
+    res.json(parts.find((e) => e["name"] === name));
+  } else if (serial && name) {
+    res.json(parts.find((e) => e["serial"] === serial && e["name"] === name));
+  } else {
+    results.results = parts.slice(startIndex, endIndex);
+    res.json(results);
+  }
 });
 
 app.listen(port, () => {
