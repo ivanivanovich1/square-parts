@@ -20,9 +20,9 @@ In order to find a part by its serial number, you should add the ```serial``` pa
 http://localhost:3005/square-parts?serial=01297380935
 ```
 
-### Finding a part by its name
+### Finding parts by their name
 
-In order to find a part by its name, you should add the ```name``` parameter to the url, and provide the name of a part.
+In order to find parts by their name, you should add the ```name``` parameter to the url, and provide the name of parts.
 
 ```
 http://localhost:3005/square-parts?name=Set of templates, doors, rear
