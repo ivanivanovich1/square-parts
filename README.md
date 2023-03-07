@@ -30,8 +30,8 @@ http://localhost:3005/square-parts?name=Set of templates, doors, rear
 
 ### Finding a part by its name and serial
 
-You can also combine the ```serial``` and ```name``` params in order to find a part by both its serial number and name.
+In order to return a part by either its serial number or its name, you can use the /square-parts/search/:serialOrName endpoint.
 
 ```
-http://localhost:3005/square-parts?name=Set of templates, doors, rear&serial=01297380935
+http://localhost:3005/square-parts/search/01297380935
 ```
