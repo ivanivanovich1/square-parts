@@ -9,7 +9,7 @@ Going to ```/square-parts``` to return all the parts. The results are paginated 
 To change the page, simply add the ```?page``` parameter to the url.
 
 ```
-http://localhost:3005/square-parts?page=3
+http://localhost:3000/square-parts?page=3
 ```
 
 ### Finding a part by its serial number
@@ -17,7 +17,7 @@ http://localhost:3005/square-parts?page=3
 In order to find a part by its serial number, you should add the ```serial``` parameter to the url, and provide the serial number of a part.
 
 ```
-http://localhost:3005/square-parts?serial=01297380935
+http://localhost:3000/square-parts?serial=01297380935
 ```
 
 ### Finding parts by their name
@@ -25,7 +25,7 @@ http://localhost:3005/square-parts?serial=01297380935
 In order to find parts by their name, you should add the ```name``` parameter to the url, and provide the name of parts.
 
 ```
-http://localhost:3005/square-parts?name=Set of templates, doors, rear
+http://localhost:3000/square-parts?name=Set of templates, doors, rear
 ```
 
 ### Finding a part by its name and serial
@@ -33,5 +33,5 @@ http://localhost:3005/square-parts?name=Set of templates, doors, rear
 In order to return a part by either its serial number or its name, you can use the /square-parts/search/:serialOrName endpoint.
 
 ```
-http://localhost:3005/square-parts/search/01297380935
+http://localhost:3000/square-parts/search/01297380935
 ```
